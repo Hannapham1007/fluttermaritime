@@ -1,5 +1,3 @@
-import '../data/allwordslist.dart';
-
 class ShipPart {
   final String shipPart;
   final String id;
@@ -7,37 +5,7 @@ class ShipPart {
   ShipPart(this.shipPart, this.id);
 }
 
-class Model {
-
-  Model(bool darkmode, int highscore) {
-    _darkMode = darkmode;
-    _highscore = highscore;
-  }
-
-  //Dark Mode
-  bool _darkMode = false;
-
-  bool get darkMode => _darkMode;
-
-  void enableDarkMode(bool value) {
-    _darkMode = value;
-  }
-
-  //SMCP phrases
-  final List<Map<String, String>> _allwords = List.from(allWordsList);
-
-  List<Map<String, String>> get allwords => _allwords;
-
-  //Navigation
-  int _currentScreen = 0;
-
-  int get currentScreen => _currentScreen;
-
-  void changeScreen(int newScreen) {
-    _currentScreen = newScreen;
-  }
-
-  //Ship Exercise
+class ShipExModel {
   int _progress = 0;
 
   int get progress => _progress;
@@ -221,78 +189,5 @@ class Model {
     } else {
       decreaseScore();
     }
-  }
-
-  //SMCP glossary
-  List<Map<String, dynamic>> _foundwords = [];
-
-  List<Map<String, dynamic>> get foundwords => _foundwords;
-
-  void filterPhrases(String key) {
-    List<Map<String, dynamic>> results = [];
-    if (key.isEmpty) {
-      results = _allwords;
-    } else {
-      results = _allwords
-          .where((element) =>
-              element['name']!.toLowerCase().startsWith(key.toLowerCase()))
-          .toList();
-    }
-    _foundwords = results;
-  }
-
-  void initFoundwords() {
-    _foundwords = _allwords;
-  }
-
-  //Practice Listening
-  int _listenIndex = 0;
-
-  int get listenIndex => _listenIndex;
-
-  void setIndex(int index) {
-    _listenIndex = index;
-  }
-
-  bool _isRecording = false;
-
-  bool get isRecording => _isRecording;
-
-  void setIsRecording() {
-    _isRecording ? _isRecording = false : _isRecording = true;
-  }
-
-  String _latestFile = '';
-
-  String get latestFile => _latestFile;
-
-  void setLatestFile(String path){
-    _latestFile = path;
-  }
-
-  //Radio Sentences
-  final List<Map<String, dynamic>> _allSentences = List.from(all_sentences);
-
-  List<Map<String, dynamic>> get allSentences => _allSentences;
-
-  List<Map<String, dynamic>> _foundSentences = [];
-
-  List<Map<String, dynamic>> get foundSentences => _foundSentences;
-
-  void initSentences() {
-    _foundSentences = _allSentences;
-  }
-
-  void filterSentences(String key) {
-    List<Map<String, dynamic>> results = [];
-    if (key.isEmpty) {
-      results = _allSentences;
-    } else {
-      results = _allSentences
-          .where((element) =>
-              element['topic'].toLowerCase().contains(key.toLowerCase()))
-          .toList();
-    }
-    _foundSentences = results;
   }
 }
